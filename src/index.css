@@ -8,35 +8,56 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Tamtara — warm, earthy, nature-inspired cafe palette */
+    --background: 36 33% 97%;        /* warm cream */
+    --foreground: 25 30% 14%;        /* deep espresso */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 36 40% 95%;
+    --card-foreground: 25 30% 14%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 36 33% 97%;
+    --popover-foreground: 25 30% 14%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 22 60% 32%;           /* roasted coffee brown */
+    --primary-foreground: 36 40% 96%;
+    --primary-glow: 28 70% 48%;      /* warm amber */
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 90 18% 32%;         /* forest moss */
+    --secondary-foreground: 36 40% 96%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 36 20% 90%;
+    --muted-foreground: 25 15% 38%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 36 65% 55%;            /* warm honey */
+    --accent-foreground: 25 30% 14%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 36 40% 96%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 30 20% 84%;
+    --input: 30 20% 84%;
+    --ring: 22 60% 32%;
 
-    --radius: 0.5rem;
+    --radius: 0.85rem;
+
+    /* Brand surfaces */
+    --cream: 36 45% 94%;
+    --bark: 22 35% 18%;
+    --leaf: 90 22% 28%;
+    --terracotta: 14 55% 50%;
+
+    /* Gradients */
+    --gradient-warm: linear-gradient(135deg, hsl(22 60% 32%) 0%, hsl(28 70% 48%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(25 35% 10% / 0.15) 0%, hsl(25 40% 8% / 0.85) 100%);
+    --gradient-cream: linear-gradient(180deg, hsl(36 45% 96%) 0%, hsl(36 30% 92%) 100%);
+
+    /* Shadows */
+    --shadow-warm: 0 20px 50px -20px hsl(22 60% 25% / 0.35);
+    --shadow-soft: 0 10px 30px -15px hsl(25 30% 14% / 0.25);
+    --shadow-glow: 0 0 60px hsl(28 70% 48% / 0.4);
+
+    /* Motion */
+    --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +121,42 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-serif tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .bg-gradient-warm { background: var(--gradient-warm); }
+  .bg-gradient-hero { background: var(--gradient-hero); }
+  .bg-gradient-cream { background: var(--gradient-cream); }
+  .shadow-warm { box-shadow: var(--shadow-warm); }
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .transition-smooth { transition: all 0.4s var(--transition-smooth); }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 0 hsl(142 70% 40% / 0.6); }
+    50% { box-shadow: 0 0 0 14px hsl(142 70% 40% / 0); }
+  }
+  .animate-fade-up { animation: fade-up 0.8s var(--transition-smooth) both; }
+  .animate-float { animation: float-slow 3s ease-in-out infinite; }
+  .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
 }
