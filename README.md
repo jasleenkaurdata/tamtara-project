@@ -31,6 +31,10 @@ This project was initially generated using AI-assisted development tools and was
 - Configured project structure
 - Performed manual frontend edits and testing
 
+  
+## Live Website Link
+https://tamtara-demo-7dsq.vercel.app
+
 ## Project Status
 
 Completed client website prototype.
